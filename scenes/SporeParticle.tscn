@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://ctwcxfirokvu3"]
+
+[ext_resource type="Script" uid="uid://bk267weovie51" path="res://scripts/SporeParticle.gd" id="1_7g6ua"]
+[ext_resource type="Texture2D" uid="uid://dtvt448pfr1ls" path="res://assets/sprites/spore_particle_enhanced.png" id="1_7w0fy"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7g6ua"]
+blend_mode = 1
+
+[node name="SporeParticle" type="Node2D"]
+script = ExtResource("1_7g6ua")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_7g6ua")
+scale = Vector2(0.09, 0.09)
+texture = ExtResource("1_7w0fy")

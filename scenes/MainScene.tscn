@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://co5syquwm01ib"]
+
+[ext_resource type="Texture2D" uid="uid://bwf12bpcto2e" path="res://assets/sprites/mushroom_idle_enhanced.png" id="1_echbf"]
+[ext_resource type="Script" uid="uid://dna2ckempq885" path="res://scripts/MainScene.gd" id="1_ibiss"]
+[ext_resource type="Texture2D" uid="uid://b2l5uc8b527c1" path="res://assets/sprites/background_forest.png" id="2_c6dvc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ibiss"]
+radius = 379.618
+
+[node name="MainScene" type="Node2D"]
+script = ExtResource("1_ibiss")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(660, 346)
+texture = ExtResource("2_c6dvc")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 2.0
+offset_right = 1276.0
+offset_bottom = 680.0
+mouse_filter = 2
+
+[node name="MushroomSprite" type="Area2D" parent="."]
+position = Vector2(653.5, 387.5)
+scale = Vector2(0.18457, 0.18457)
+disable_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="MushroomSprite"]
+position = Vector2(-192.339, 322.371)
+texture = ExtResource("1_echbf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MushroomSprite"]
+position = Vector2(-186.921, 344.043)
+shape = SubResource("CircleShape2D_ibiss")
+
+[connection signal="input_event" from="MushroomSprite" to="." method="_on_mushroom_sprite_input_event"]

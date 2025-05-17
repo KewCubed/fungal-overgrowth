@@ -1,0 +1,140 @@
+[gd_scene load_steps=4 format=3 uid="uid://c46g6rbqsj8qk"]
+
+[ext_resource type="Script" uid="uid://dbiuqhr5yf76t" path="res://scripts/UIOverlay.gd" id="1_02gp2"]
+[ext_resource type="Texture2D" uid="uid://b67sef6qvel3h" path="res://assets/sprites/icon_placeholder.png" id="1_d52ir"]
+[ext_resource type="Texture2D" uid="uid://cb813pusmmn3y" path="res://assets/sprites/currency_display.png" id="2_xlj8q"]
+
+[node name="UIOverlay" type="CanvasLayer"]
+script = ExtResource("1_02gp2")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(200, 400)
+offset_right = 250.0
+offset_bottom = 450.0
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="UI Background" type="Control" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/UI Background"]
+layout_mode = 2
+offset_left = 18.0
+offset_top = 23.0
+offset_right = 208.0
+offset_bottom = 413.0
+texture = ExtResource("2_xlj8q")
+expand_mode = 5
+
+[node name="Control" type="Control" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Control"]
+layout_mode = 2
+offset_left = 32.0
+offset_top = 73.0
+offset_right = 152.0
+offset_bottom = 401.0
+size_flags_horizontal = 4
+theme_override_constants/separation = -10
+
+[node name="Spores" type="HBoxContainer" parent="MarginContainer/Control/VBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(45, 45)
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="MarginContainer/Control/VBoxContainer/Spores"]
+layout_mode = 2
+tooltip_text = "Spores"
+texture = ExtResource("1_d52ir")
+expand_mode = 3
+
+[node name="Value" type="Label" parent="MarginContainer/Control/VBoxContainer/Spores"]
+layout_mode = 2
+text = "0"
+
+[node name="PassiveValue" type="Label" parent="MarginContainer/Control/VBoxContainer/Spores"]
+layout_mode = 2
+text = "(+0.0/s)"
+
+[node name="Mycelium Mass" type="HBoxContainer" parent="MarginContainer/Control/VBoxContainer"]
+visible = false
+clip_contents = true
+custom_minimum_size = Vector2(45, 45)
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="MarginContainer/Control/VBoxContainer/Mycelium Mass"]
+layout_mode = 2
+tooltip_text = "Mycelium Mass"
+texture = ExtResource("1_d52ir")
+expand_mode = 3
+
+[node name="Value" type="Label" parent="MarginContainer/Control/VBoxContainer/Mycelium Mass"]
+layout_mode = 2
+text = "0"
+
+[node name="PassiveValue" type="Label" parent="MarginContainer/Control/VBoxContainer/Mycelium Mass"]
+layout_mode = 2
+text = "(+0.0/s)"
+
+[node name="Nutrients" type="HBoxContainer" parent="MarginContainer/Control/VBoxContainer"]
+visible = false
+clip_contents = true
+custom_minimum_size = Vector2(45, 45)
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="MarginContainer/Control/VBoxContainer/Nutrients"]
+layout_mode = 2
+tooltip_text = "Nutrients"
+texture = ExtResource("1_d52ir")
+expand_mode = 3
+
+[node name="Value" type="Label" parent="MarginContainer/Control/VBoxContainer/Nutrients"]
+layout_mode = 2
+text = "0"
+
+[node name="PassiveValue" type="Label" parent="MarginContainer/Control/VBoxContainer/Nutrients"]
+layout_mode = 2
+text = "(+0.0/s)"
+
+[node name="Mutagen" type="HBoxContainer" parent="MarginContainer/Control/VBoxContainer"]
+visible = false
+clip_contents = true
+custom_minimum_size = Vector2(45, 45)
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="MarginContainer/Control/VBoxContainer/Mutagen"]
+layout_mode = 2
+tooltip_text = "Mutagen Points"
+texture = ExtResource("1_d52ir")
+expand_mode = 3
+
+[node name="Value" type="Label" parent="MarginContainer/Control/VBoxContainer/Mutagen"]
+layout_mode = 2
+text = "0"
+
+[node name="PassiveValue" type="Label" parent="MarginContainer/Control/VBoxContainer/Mutagen"]
+layout_mode = 2
+text = "(+0.0/s)"
+
+[node name="Neural Essence" type="HBoxContainer" parent="MarginContainer/Control/VBoxContainer"]
+visible = false
+clip_contents = true
+custom_minimum_size = Vector2(45, 45)
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="MarginContainer/Control/VBoxContainer/Neural Essence"]
+layout_mode = 2
+tooltip_text = "Neural Essence"
+texture = ExtResource("1_d52ir")
+expand_mode = 3
+
+[node name="Value" type="Label" parent="MarginContainer/Control/VBoxContainer/Neural Essence"]
+layout_mode = 2
+text = "0"
+
+[node name="PassiveValue" type="Label" parent="MarginContainer/Control/VBoxContainer/Neural Essence"]
+layout_mode = 2
+text = "(+0.0/s)"
