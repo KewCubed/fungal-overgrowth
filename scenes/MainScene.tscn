@@ -39,11 +39,11 @@ position = Vector2(-192.339, 322.371)
 texture = ExtResource("1_echbf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MushroomSprite"]
-position = Vector2(-186.921, 344.043)
+position = Vector2(-189.63, 363.006)
 shape = SubResource("CircleShape2D_ibiss")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-offset = Vector2(750, 520)
+position = Vector2(768, 512)
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true

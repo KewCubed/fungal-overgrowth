@@ -16,8 +16,9 @@ func _ready():
 	ui = ui_overlay_scene.instantiate()
 	add_child(ui)
 
-	# Get background size before frame starts
-	var bg_size = background.texture.get_size() * background.scale
+	# Set camera to center of background initially
+	var bg_size = background.size
+	cam.position = background.global_position + bg_size / 2.0
 	cam.force_update_scroll()
 
 func _notification(what):
@@ -26,8 +27,12 @@ func _notification(what):
 		print("RESIZED VIEWPORT:", new_size)
 
 func is_mouse_over_mushroom() -> bool:
-	var local_mouse = $MushroomSprite.to_local(get_global_mouse_position())
-	return $MushroomSprite.get_node("Sprite2D").get_rect().has_point(local_mouse)
+	var collision_shape = $MushroomSprite/CollisionShape2D
+	var shape = collision_shape.shape
+	if typeof(shape) == TYPE_NIL or not shape is CircleShape2D:
+		return false
+	var mouse_pos = $MushroomSprite.to_local(get_global_mouse_position())
+	return mouse_pos.distance_to(collision_shape.position) <= shape.radius
 
 func _input(event):
 	if event is InputEventMouseButton:
@@ -44,16 +49,29 @@ func _input(event):
 		cam.position = clamp_camera(new_pos)
 
 func clamp_camera(pos: Vector2) -> Vector2:
-	var half_viewport = get_viewport().get_visible_rect().size / 2.0
+	var viewport_size = get_viewport().get_visible_rect().size
 	var bg_pos = background.global_position
 	var bg_size = background.size
-	var bg_min = bg_pos + half_viewport
-	var bg_max = bg_pos + bg_size - half_viewport
-
-	if half_viewport.x * 2 >= bg_size.x or half_viewport.y * 2 >= bg_size.y:
-		return bg_pos + bg_size / 2.0
-
-	return pos.clamp(bg_min, bg_max)
+	
+	# Calculate the bounds where the camera can move
+	# Camera should stay within the background bounds
+	var min_x = bg_pos.x + viewport_size.x / 2.0
+	var max_x = bg_pos.x + bg_size.x - viewport_size.x / 2.0
+	var min_y = bg_pos.y + viewport_size.y / 2.0
+	var max_y = bg_pos.y + bg_size.y - viewport_size.y / 2.0
+	
+	# If viewport is larger than background, center the camera
+	if viewport_size.x >= bg_size.x:
+		min_x = bg_pos.x + bg_size.x / 2.0
+		max_x = bg_pos.x + bg_size.x / 2.0
+	if viewport_size.y >= bg_size.y:
+		min_y = bg_pos.y + bg_size.y / 2.0
+		max_y = bg_pos.y + bg_size.y / 2.0
+	
+	return Vector2(
+		clamp(pos.x, min_x, max_x),
+		clamp(pos.y, min_y, max_y)
+	)
 
 func _process(_delta):
 	if ui:
